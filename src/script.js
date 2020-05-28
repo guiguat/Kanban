@@ -2,7 +2,21 @@
 let cardBeignDragged;
 let cards = document.querySelectorAll('.kanbanCard');
 let dropzones = document.querySelectorAll('.dropzone');
+let dataCards = [];
+//initialize
+$(document).ready(()=>{
+    initializeApp();
+    $('#add').click(()=>{
+        const title = $('#titleInput').val()!==''?$('#titleInput').val():null;
+        const description = $('#descriptionInput').val()!==''?$('#descriptionInput').val():null;
+        dataCards.push({
+            title,
+            description
+        });
+    });
+});
 
+//functions
 function formSubmit(e){
     e.preventDefault();
     console.log("clicou");
@@ -23,7 +37,6 @@ function initializeApp(){
         dropzone.addEventListener('drop', drop);
     });
 }
-initializeApp();
 //cards
 function dragstart(){
     dropzones.forEach( dropzone=>dropzone.classList.add('highlight'));
