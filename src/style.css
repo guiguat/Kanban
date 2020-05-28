@@ -46,22 +46,26 @@ body{
     margin-bottom: 2rem;
     border-radius: 4px;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .description{
     color: #65656C;
     font-weight: normal;
+    font-size: 14px;
 }
 
 .red{
-    box-shadow: -5px 0px 0px #772121c0;
+    border-left: 5px solid #E2163B;
+}
+.purple{
+    border-left: 5px solid #4515CF;
 }
 .blue {
-    box-shadow: -5px 0px 0px #213E77c0;
+    border-left: 5px solid #158CCF;
 }
-.green{
-    box-shadow: -5px 0px 0px #1F7D23c0;
+.yellow{
+    border-left: 5px solid #EFA20C;
 }
 
 .highlight{

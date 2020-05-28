@@ -38,19 +38,28 @@ function dragenter(){
 function dragover({target}){
     this.classList.add('over');
     cardBeignDragged = document.querySelector('.is-dragging');
-    if(this.id ==="green"){
+    if(this.id ==="yellow"){
         cardBeignDragged.classList.remove('red');
         cardBeignDragged.classList.remove('blue');
-        cardBeignDragged.classList.add('green');
+        cardBeignDragged.classList.remove('purple');
+        cardBeignDragged.classList.add('yellow');
     }
-    if(this.id ==="blue"){
-        cardBeignDragged.classList.remove('green');
+    else if(this.id ==="blue"){
+        cardBeignDragged.classList.remove('yellow');
         cardBeignDragged.classList.remove('red');
+        cardBeignDragged.classList.remove('purple');
         cardBeignDragged.classList.add('blue');
     }
-    if(this.id ==="red"){
-        cardBeignDragged.classList.remove('green');
+    else if(this.id ==="purple"){
+        cardBeignDragged.classList.remove('yellow');
         cardBeignDragged.classList.remove('blue');
+        cardBeignDragged.classList.remove('red');
+        cardBeignDragged.classList.add('purple');
+    }
+    else if(this.id ==="red"){
+        cardBeignDragged.classList.remove('yellow');
+        cardBeignDragged.classList.remove('blue');
+        cardBeignDragged.classList.remove('purple');
         cardBeignDragged.classList.add('red');
     }
     
