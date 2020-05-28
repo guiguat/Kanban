@@ -1,14 +1,23 @@
 //variables
-const cards = document.querySelectorAll('.kanbanCard');
-const dropzones = document.querySelectorAll('.dropzone');
 let cardBeignDragged;
-//cards
-cards.forEach(card=>{
-    card.addEventListener('dragstart', dragstart);
-    card.addEventListener('drag', drag);
-    card.addEventListener('dragend', dragend);
-});
 
+function initializeApp(){
+    const cards = document.querySelectorAll('.kanbanCard');
+    const dropzones = document.querySelectorAll('.dropzone');
+    cards.forEach(card=>{
+        card.addEventListener('dragstart', dragstart);
+        card.addEventListener('drag', drag);
+        card.addEventListener('dragend', dragend);
+    });
+    dropzones.forEach(dropzone=>{
+        dropzone.addEventListener('dragenter', dragenter);
+        dropzone.addEventListener('dragover', dragover);
+        dropzone.addEventListener('dragleave', dragleave);
+        dropzone.addEventListener('drop', drop);
+    });
+}
+initializeApp();
+//cards
 function dragstart(){
     dropzones.forEach( dropzone=>dropzone.classList.add('highlight'));
     this.classList.add('is-dragging');
@@ -24,13 +33,6 @@ function dragend(){
 }
 
 // Release cards area
-dropzones.forEach(dropzone=>{
-    dropzone.addEventListener('dragenter', dragenter);
-    dropzone.addEventListener('dragover', dragover);
-    dropzone.addEventListener('dragleave', dragleave);
-    dropzone.addEventListener('drop', drop);
-});
-
 function dragenter(){
 
 }

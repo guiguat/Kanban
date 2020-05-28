@@ -9,6 +9,15 @@
     <title>Kanban</title>
 </head>
 <body>
+    <div class="controls">
+    <form onsubmit="()=>{}">
+            <label for="titleInput">Title</label>
+            <input type="text" name="title" id="titleInput">
+            <label for="descriptionInput">Description</label>
+            <input type="text" name="description" id="descriptionInput">
+            <button>Add</button>
+        </form>
+    </div>
     <div class="boards container-fluid row mx-auto p-0">
         <div class="board col-md-3">
             <h3 class="text-center">Todo</h3>
