@@ -2,7 +2,6 @@
 let cardBeignDragged;
 let cards = document.querySelectorAll('.kanbanCard');
 let dropzones = document.querySelectorAll('.dropzone');
-const initialParent = document.getElementById('yellow');
 let dataCards = [];
 
 //initialize
@@ -16,19 +15,21 @@ $(document).ready(()=>{
     
     if(JSON.parse(localStorage.getItem('@kanban:data'))){
         dataCards = JSON.parse(localStorage.getItem('@kanban:data'));
-        createComponents(dataCards, initialParent);
+        initializeComponents(dataCards);
     }
     initializeCards();
     $('#add').click(()=>{
         const title = $('#titleInput').val()!==''?$('#titleInput').val():null;
         const description = $('#descriptionInput').val()!==''?$('#descriptionInput').val():null;
-        
-        dataCards.push({
+        $('#titleInput').val('');
+        $('#descriptionInput').val('');
+        const newCard = {
             title,
             description
-        });
+        }
+        dataCards.push(newCard);
         localStorage.setItem('@kanban:data', JSON.stringify(dataCards));
-        createComponents(dataCards, initialParent);
+        appendComponents(newCard);
         initializeCards();
     });
 });
@@ -44,7 +45,7 @@ function initializeCards(){
     });
 }
 //data
-function createComponents(dataArray, parentNode){
+function initializeComponents(dataArray){
     
     dataArray.forEach(card=>{
         let htmlString = `
@@ -55,8 +56,21 @@ function createComponents(dataArray, parentNode){
                 </div>
             </div>
         `
-        parentNode.innerHTML += htmlString;
+        $('#yellow').append(htmlString);
     })
+}
+function appendComponents(card){
+    
+    let htmlString = `
+        <div class="kanbanCard yellow" draggable="true">
+            <div class="content"> 
+                <h4 class="title">${card.title}</h4>
+                <p class="description">${card.description}</p>
+            </div>
+        </div>
+    `
+    $('#yellow').append(htmlString);
+
 }
 
 //cards
