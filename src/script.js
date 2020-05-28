@@ -2,41 +2,63 @@
 let cardBeignDragged;
 let cards = document.querySelectorAll('.kanbanCard');
 let dropzones = document.querySelectorAll('.dropzone');
+const initialParent = document.getElementById('yellow');
 let dataCards = [];
+
 //initialize
+dropzones.forEach(dropzone=>{
+    dropzone.addEventListener('dragenter', dragenter);
+    dropzone.addEventListener('dragover', dragover);
+    dropzone.addEventListener('dragleave', dragleave);
+    dropzone.addEventListener('drop', drop);
+});
 $(document).ready(()=>{
-    initializeApp();
+    
+    if(JSON.parse(localStorage.getItem('@kanban:data'))){
+        dataCards = JSON.parse(localStorage.getItem('@kanban:data'));
+        createComponents(dataCards, initialParent);
+    }
+    initializeCards();
     $('#add').click(()=>{
         const title = $('#titleInput').val()!==''?$('#titleInput').val():null;
         const description = $('#descriptionInput').val()!==''?$('#descriptionInput').val():null;
+        
         dataCards.push({
             title,
             description
         });
+        localStorage.setItem('@kanban:data', JSON.stringify(dataCards));
+        createComponents(dataCards, initialParent);
+        initializeCards();
     });
 });
 
 //functions
-function formSubmit(e){
-    e.preventDefault();
-    console.log("clicou");
-}
-
-function initializeApp(){
+function initializeCards(){
     cards = document.querySelectorAll('.kanbanCard');
-    dropzones = document.querySelectorAll('.dropzone');
+    
     cards.forEach(card=>{
         card.addEventListener('dragstart', dragstart);
         card.addEventListener('drag', drag);
         card.addEventListener('dragend', dragend);
     });
-    dropzones.forEach(dropzone=>{
-        dropzone.addEventListener('dragenter', dragenter);
-        dropzone.addEventListener('dragover', dragover);
-        dropzone.addEventListener('dragleave', dragleave);
-        dropzone.addEventListener('drop', drop);
-    });
 }
+//data
+function createComponents(dataArray, parentNode){
+    
+    dataArray.forEach(card=>{
+        let htmlString = `
+            <div class="kanbanCard yellow" draggable="true">
+                <div class="content"> 
+                    <h4 class="title">${card.title}</h4>
+                    <p class="description">${card.description}</p>
+                </div>
+            </div>
+        `
+        parentNode.innerHTML += htmlString;
+    })
+}
+
 //cards
 function dragstart(){
     dropzones.forEach( dropzone=>dropzone.classList.add('highlight'));
