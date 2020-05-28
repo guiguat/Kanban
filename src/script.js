@@ -46,7 +46,7 @@ function initializeCards(){
 }
 //data
 function initializeComponents(dataArray){
-    
+    //create all the stored cards and put inside of the todo area
     dataArray.forEach(card=>{
         let htmlString = `
             <div class="kanbanCard yellow" draggable="true">
@@ -59,8 +59,9 @@ function initializeComponents(dataArray){
         $('#yellow').append(htmlString);
     })
 }
+
 function appendComponents(card){
-    
+    //creates new card inside of the todo area
     let htmlString = `
         <div class="kanbanCard yellow" draggable="true">
             <div class="content"> 
