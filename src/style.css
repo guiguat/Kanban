@@ -1,0 +1,53 @@
+html{
+    font-family: "Nunito";
+    overflow-x: hidden;
+}
+body{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: #E9E9E9;
+}
+.boards {
+    display: flex;
+    height: 100vh;
+}
+
+.board {
+    background: #E9E9E9;
+    padding: 0!important;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.board h3 {
+    padding: 16px!important;
+    width: 100%;
+    margin: 0;
+    background-color: #F3F3F3;
+    color: #1C1C2E;
+}
+
+.dropzone {
+    padding: 16px;
+    min-width: 282px;
+    min-height: 200px;
+    justify-content: center;
+}
+
+.kanbanCard {
+    background-color: #FFFF;
+    padding: 16px;
+    box-shadow: -5px 0px 0px rgba(00, 00, 0, 0.48);
+    width: 250px;
+    margin: auto;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.description{
+    color: #65656C;
+    font-weight: normal;
+}
