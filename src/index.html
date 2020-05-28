@@ -9,14 +9,14 @@
     <title>Kanban</title>
 </head>
 <body>
-    <div class="controls">
-    <form onsubmit="()=>{}">
-            <label for="titleInput">Title</label>
-            <input type="text" name="title" id="titleInput">
-            <label for="descriptionInput">Description</label>
-            <input type="text" name="description" id="descriptionInput">
-            <button>Add</button>
-        </form>
+    <div class="controls p-3">
+        <div class="form-inline">      
+            <label for="titleInput">Title:</label>
+            <input class="form-control form-control-sm" type="text" name="title" id="titleInput">
+            <label for="descriptionInput">Description:</label>
+            <input class="form-control form-control-sm" type="text" name="description" id="descriptionInput">
+            <button class="btn btn-success" id="add">Add</button>
+        </div>
     </div>
     <div class="boards container-fluid row mx-auto p-0">
         <div class="board col-md-3">

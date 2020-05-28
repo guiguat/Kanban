@@ -2,6 +2,12 @@
 let cardBeignDragged;
 let cards = document.querySelectorAll('.kanbanCard');
 let dropzones = document.querySelectorAll('.dropzone');
+
+function formSubmit(e){
+    e.preventDefault();
+    console.log("clicou");
+}
+
 function initializeApp(){
     cards = document.querySelectorAll('.kanbanCard');
     dropzones = document.querySelectorAll('.dropzone');
