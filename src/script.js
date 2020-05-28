@@ -1,9 +1,10 @@
 //variables
 let cardBeignDragged;
-
+let cards = document.querySelectorAll('.kanbanCard');
+let dropzones = document.querySelectorAll('.dropzone');
 function initializeApp(){
-    const cards = document.querySelectorAll('.kanbanCard');
-    const dropzones = document.querySelectorAll('.dropzone');
+    cards = document.querySelectorAll('.kanbanCard');
+    dropzones = document.querySelectorAll('.dropzone');
     cards.forEach(card=>{
         card.addEventListener('dragstart', dragstart);
         card.addEventListener('drag', drag);
