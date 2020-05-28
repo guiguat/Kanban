@@ -26,6 +26,7 @@ body{
     width: 100%;
     margin: 0;
     background-color: #F3F3F3;
+    font-weight: bold;
     color: #1C1C2E;
 }
 
@@ -34,6 +35,7 @@ body{
     min-width: 282px;
     min-height: 200px;
     justify-content: center;
+    height: 100%;
 }
 
 .kanbanCard {
@@ -41,6 +43,7 @@ body{
     padding: 16px;
     width: 250px;
     margin: auto;
+    margin-bottom: 2rem;
     border-radius: 4px;
     font-weight: 600;
     font-size: 18px;
@@ -59,4 +62,19 @@ body{
 }
 .green{
     box-shadow: -5px 0px 0px #1F7D23c0;
+}
+
+.highlight{
+    background-color: #D7D7D7cc;
+}
+.kanbanCard, .dropzone{
+    transition: 400ms;
+}
+.is-dragging{
+    cursor: move!important;
+    cursor: -webkit-grabbing;
+    opacity: .3;
+}
+.over{
+    background-color: rgb(235, 235, 235);
 }
