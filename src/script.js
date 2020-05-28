@@ -1,7 +1,7 @@
 //variables
 const cards = document.querySelectorAll('.kanbanCard');
 const dropzones = document.querySelectorAll('.dropzone');
-
+let cardBeignDragged;
 //cards
 cards.forEach(card=>{
     card.addEventListener('dragstart', dragstart);
@@ -35,13 +35,30 @@ function dragenter(){
 
 }
 
-function dragover(){
+function dragover({target}){
     this.classList.add('over');
-    const cardBeignDragged = document.querySelector('.is-dragging');
+    cardBeignDragged = document.querySelector('.is-dragging');
+    if(this.id ==="green"){
+        cardBeignDragged.classList.remove('red');
+        cardBeignDragged.classList.remove('blue');
+        cardBeignDragged.classList.add('green');
+    }
+    if(this.id ==="blue"){
+        cardBeignDragged.classList.remove('green');
+        cardBeignDragged.classList.remove('red');
+        cardBeignDragged.classList.add('blue');
+    }
+    if(this.id ==="red"){
+        cardBeignDragged.classList.remove('green');
+        cardBeignDragged.classList.remove('blue');
+        cardBeignDragged.classList.add('red');
+    }
+    
     this.appendChild(cardBeignDragged);
 }
 
 function dragleave(){
+  
     this.classList.remove('over');
 }
 
