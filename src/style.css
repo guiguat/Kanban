@@ -39,7 +39,6 @@ body{
 .kanbanCard {
     background-color: #FFFF;
     padding: 16px;
-    box-shadow: -5px 0px 0px rgba(00, 00, 0, 0.48);
     width: 250px;
     margin: auto;
     border-radius: 4px;
@@ -50,4 +49,14 @@ body{
 .description{
     color: #65656C;
     font-weight: normal;
+}
+
+.red{
+    box-shadow: -5px 0px 0px #772121c0;
+}
+.blue {
+    box-shadow: -5px 0px 0px #213E77c0;
+}
+.green{
+    box-shadow: -5px 0px 0px #1F7D23c0;
 }
