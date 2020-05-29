@@ -23,14 +23,16 @@ $(document).ready(()=>{
         const description = $('#descriptionInput').val()!==''?$('#descriptionInput').val():null;
         $('#titleInput').val('');
         $('#descriptionInput').val('');
-        const newCard = {
-            title,
-            description
+        if(title && description){
+            const newCard = {
+                title,
+                description
+            }
+            dataCards.push(newCard);
+            localStorage.setItem('@kanban:data', JSON.stringify(dataCards));
+            appendComponents(newCard);
+            initializeCards();
         }
-        dataCards.push(newCard);
-        localStorage.setItem('@kanban:data', JSON.stringify(dataCards));
-        appendComponents(newCard);
-        initializeCards();
     });
 });
 
