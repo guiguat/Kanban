@@ -2,7 +2,12 @@
 let cardBeignDragged;
 let cards = document.querySelectorAll('.kanbanCard');
 let dropzones = document.querySelectorAll('.dropzone');
-let dataCards = [];
+let dataCards = {
+    config:{
+        maxid:0
+    },
+    cards:[]
+};
 
 //initialize
 dropzones.forEach(dropzone=>{
@@ -24,12 +29,16 @@ $(document).ready(()=>{
         $('#titleInput').val('');
         $('#descriptionInput').val('');
         if(title && description){
+            let id = dataCards.config.maxid+1;
             const newCard = {
+                id,
                 title,
-                description
+                description,
+                position:"yellow"
             }
-            dataCards.push(newCard);
-            localStorage.setItem('@kanban:data', JSON.stringify(dataCards));
+            dataCards.cards.push(newCard);
+            dataCards.config.maxid = id;
+            save();
             appendComponents(newCard);
             initializeCards();
         }
@@ -46,26 +55,36 @@ function initializeCards(){
         card.addEventListener('dragend', dragend);
     });
 }
-//data
+
 function initializeComponents(dataArray){
     //create all the stored cards and put inside of the todo area
-    dataArray.forEach(card=>{
+    dataArray.cards.forEach(card=>{
         let htmlString = `
-            <div class="kanbanCard yellow" draggable="true">
+            <div id=${card.id.toString()} class="kanbanCard ${card.position}" draggable="true">
                 <div class="content"> 
                     <h4 class="title">${card.title}</h4>
                     <p class="description">${card.description}</p>
                 </div>
             </div>
         `
-        $('#yellow').append(htmlString);
+        if(card.position === "yellow")
+            $('#yellow').append(htmlString);
+
+        else if(card.position === "blue")
+            $('#blue').append(htmlString);
+
+        else if(card.position === "purple")
+            $('#purple').append(htmlString);  
+
+        else if(card.position === "red")
+            $('#red').append(htmlString);  
     })
 }
 
 function appendComponents(card){
     //creates new card inside of the todo area
     let htmlString = `
-        <div class="kanbanCard yellow" draggable="true">
+        <div id=${card.id.toString()} class="kanbanCard yellow" draggable="true">
             <div class="content"> 
                 <h4 class="title">${card.title}</h4>
                 <p class="description">${card.description}</p>
@@ -74,6 +93,17 @@ function appendComponents(card){
     `
     $('#yellow').append(htmlString);
 
+}
+
+function save(){
+    localStorage.setItem('@kanban:data', JSON.stringify(dataCards));
+}
+
+function position(cardBeignDragged, color){
+    const index = dataCards.cards.findIndex(card => card.id === parseInt(cardBeignDragged.id));
+    console.log(dataCards.cards[index])
+    dataCards.cards[index].position = color;
+    save();
 }
 
 //cards
@@ -104,24 +134,30 @@ function dragover({target}){
         cardBeignDragged.classList.remove('blue');
         cardBeignDragged.classList.remove('purple');
         cardBeignDragged.classList.add('yellow');
+        position(cardBeignDragged, "yellow");
+        
     }
     else if(this.id ==="blue"){
         cardBeignDragged.classList.remove('yellow');
         cardBeignDragged.classList.remove('red');
         cardBeignDragged.classList.remove('purple');
         cardBeignDragged.classList.add('blue');
+        position(cardBeignDragged, "blue");
+
     }
     else if(this.id ==="purple"){
         cardBeignDragged.classList.remove('yellow');
         cardBeignDragged.classList.remove('blue');
         cardBeignDragged.classList.remove('red');
         cardBeignDragged.classList.add('purple');
+        position(cardBeignDragged, "purple");
     }
     else if(this.id ==="red"){
         cardBeignDragged.classList.remove('yellow');
         cardBeignDragged.classList.remove('blue');
         cardBeignDragged.classList.remove('purple');
         cardBeignDragged.classList.add('red');
+        position(cardBeignDragged, "red");
     }
     
     this.appendChild(cardBeignDragged);
