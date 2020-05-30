@@ -1,6 +1,8 @@
 html{
     font-family: "Nunito";
-    background-color: #FFFF;  
+    --scrollbarBG: #1B1C28;
+    --thumbBG: #ffff;
+
 }
 body{
     box-sizing: border-box;
@@ -10,6 +12,25 @@ body{
     background-color: #FFFF;  
     height: 100%;
     width: 100%;  
+    scrollbar-width: thin;
+    scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+
+body::-webkit-scrollbar{
+    width: 11px;
+    height: 4px;
+}
+body::-webkit-scrollbar:horizontal{
+    height: 4px;
+}
+  
+body::-webkit-scrollbar-track, body::-webkit-scrollbar-track:horizontal {
+    background: var(--scrollbarBG);
+}
+body::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb:horizontal {
+    background-color: var(--thumbBG) ;
+    border-radius: 6px;
+    border: 3px solid var(--scrollbarBG);
 }
 .boards {
     display: inline-flex;
@@ -121,13 +142,14 @@ input{
     color: #E2163B;
     cursor: pointer;
 }
-.invisibleBtn:focus{
+.invisibleBtn:focus, #theme-btn:focus{
     padding: 0;
     margin: 0;
     background: none;
     border: none;
     outline: none;
     cursor: pointer;
+    box-shadow: none!important;
 }
 .invisibleBtn{
     padding: 0;
@@ -135,4 +157,59 @@ input{
     background: none;
     border: none;
     cursor: pointer;
+}
+
+/* dark mode */
+.darkmode{
+    background-color: #1B1C28;
+}
+.darkmode *{
+    color: white;
+    background-color: #1B1C28;
+}
+.darkmode .kanbanCard{
+    background-color: #1B1C28;
+}
+.darkmode .controls{
+    background-color: #1B1C28;
+}
+.darkmode .form-control{
+    box-shadow: none;
+    border: none;
+    background-color: #252632;
+}
+.darkmode .form-control:focus{
+    box-shadow: none;
+    border: none;
+    background-color: #252632;
+}
+.darkmode .form-inline{
+    background-color: #1B1C28;
+}
+.darkmode .btn-dark{
+    background-color: #252632;
+    border: none;
+}
+.darkmode .btn-dark:hover{
+    background-color: #292A36!important
+}
+
+.darkmode .dropzone{
+    background-color: #292A36!important;
+}
+.darkmode .boards{
+    border-top: 1px solid #252632;
+    scrollbar-color: dark;
+}
+.darkmode h3{
+    background-color: #1B1C28;
+}
+.darkmode .over{
+    background-color: #15151D!important;
+}
+.darkmode .delete{
+    color: #dc3545;
+}
+.darkmode #theme-btn{
+    color: white!important;
 }

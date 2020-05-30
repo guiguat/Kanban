@@ -16,11 +16,14 @@ let dataCards = {
     },
     cards:[]
 };
-
+let theme="light";
 //initialize
 
 $(document).ready(()=>{
-
+    theme = localStorage.getItem('@kanban:theme');
+    if(theme){
+        $("body").addClass(`${theme==="light"?"":"darkmode"}`);
+    }
     initializeBoards();
     if(JSON.parse(localStorage.getItem('@kanban:data'))){
         dataCards = JSON.parse(localStorage.getItem('@kanban:data'));
@@ -51,6 +54,16 @@ $(document).ready(()=>{
     $("#deleteAll").click(()=>{
         dataCards.cards = [];
         save();
+    });
+    $("#theme-btn").click((e)=>{
+        e.preventDefault();
+        $("body").toggleClass("darkmode");
+        if(theme){
+            localStorage.setItem("@kanban:theme", `${theme==="light"?"darkmode":""}`)
+        }
+        else{
+            localStorage.setItem("@kanban:theme", "darkmode")
+        }
     });
 });
 
