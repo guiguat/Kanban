@@ -1,6 +1,7 @@
 //variables
 let cardBeignDragged;
 let dropzones = document.querySelectorAll('.dropzone');
+let priorities;
 // let cards = document.querySelectorAll('.kanbanCard');
 let dataColors = [
     {color:"yellow", title:"backlog"},
@@ -37,7 +38,8 @@ $(document).ready(()=>{
                 id,
                 title,
                 description,
-                position:"green"
+                position:"yellow",
+                priority: false
             }
             dataCards.cards.push(newCard);
             dataCards.config.maxid = id;
@@ -83,43 +85,33 @@ function initializeCards(){
 function initializeComponents(dataArray){
     //create all the stored cards and put inside of the todo area
     dataArray.cards.forEach(card=>{
-        let htmlString = `
-            <div id=${card.id.toString()} class="kanbanCard ${card.position}" draggable="true">
-                <div class="content"> 
-                    <h4 class="title">${card.title}</h4>
-                    <p class="description">${card.description}</p>
-                </div>
-            </div>
-        `
-        if(card.position === "green")
-            $('#green').append(htmlString);
-
-        else if(card.position === "yellow")
-            $('#yellow').append(htmlString);
-
-        else if(card.position === "blue")
-            $('#blue').append(htmlString);
-
-        else if(card.position === "purple")
-            $('#purple').append(htmlString);  
-
-        else if(card.position === "red")
-            $('#red').append(htmlString);  
+        appendComponents(card); 
     })
 }
 
 function appendComponents(card){
     //creates new card inside of the todo area
     let htmlString = `
-        <div id=${card.id.toString()} class="kanbanCard yellow" draggable="true">
+        <div id=${card.id.toString()} class="kanbanCard ${card.position}" draggable="true">
             <div class="content"> 
                 <h4 class="title">${card.title}</h4>
                 <p class="description">${card.description}</p>
             </div>
+            <span id="span-${card.id.toString()}" onclick="togglePriority(event)" class="priority ${card.priority? "is-priority": ""}">PRIORITY</span>
         </div>
     `
-    $('#yellow').append(htmlString);
+    $(`#${card.position}`).append(htmlString);
+    priorities = document.querySelectorAll(".priority");
+}
 
+function togglePriority(event){
+    event.target.classList.toggle("is-priority");
+    dataCards.cards.forEach(card=>{
+        if(event.target.id.split('-')[1] === card.id.toString()){
+            card.priority=card.priority?false:true;
+        }
+    })
+    save();
 }
 
 function removeClasses(cardBeignDragged, color){
@@ -138,7 +130,6 @@ function save(){
 
 function position(cardBeignDragged, color){
     const index = dataCards.cards.findIndex(card => card.id === parseInt(cardBeignDragged.id));
-    console.log(dataCards.cards[index])
     dataCards.cards[index].position = color;
     save();
 }

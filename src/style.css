@@ -58,7 +58,7 @@ body{
 }
 
 .description{
-    color: #65656C;
+    color: #434343;
     font-weight: normal;
     font-size: 14px;
 }
@@ -104,4 +104,15 @@ label{
 }
 input{
     margin: 0rem 1rem 0rem .5rem!important;
+}
+
+.priority{
+    font-size: 13px;
+    cursor: pointer;
+    color:#989898;
+}
+.is-priority{
+    font-size: 13px;
+    cursor: pointer;
+    color:#FF7A00;
 }
