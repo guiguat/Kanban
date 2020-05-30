@@ -1,7 +1,7 @@
 {
   "name": "Kanban",
   "version": "1.0.0",
-  "description": "Um kanban feito com Electronjs, HTML, CSS, JS",
+  "description": "A simple kanban made with Electronjs, HTML, CSS, JS",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
