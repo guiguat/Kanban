@@ -118,7 +118,7 @@ function appendComponents(card){
             </div>
         </div>
     `
-    $('#green').append(htmlString);
+    $('#yellow').append(htmlString);
 
 }
 
