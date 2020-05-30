@@ -93,11 +93,20 @@ function appendComponents(card){
     //creates new card inside of the todo area
     let htmlString = `
         <div id=${card.id.toString()} class="kanbanCard ${card.position}" draggable="true">
-            <div class="content"> 
+            <div class="content">               
                 <h4 class="title">${card.title}</h4>
                 <p class="description">${card.description}</p>
             </div>
-            <span id="span-${card.id.toString()}" onclick="togglePriority(event)" class="priority ${card.priority? "is-priority": ""}">PRIORITY</span>
+            <form class="row mx-auto justify-content-between">
+                <span id="span-${card.id.toString()}" onclick="togglePriority(event)" class="material-icons priority ${card.priority? "is-priority": ""}">
+                    star
+                </span>
+                <button class="invisibleBtn">
+                    <span class="material-icons delete" onclick="deleteCard(${card.id.toString()})">
+                        remove_circle
+                    </span>
+                </button>
+            </form>
         </div>
     `
     $(`#${card.position}`).append(htmlString);
@@ -112,6 +121,18 @@ function togglePriority(event){
         }
     })
     save();
+}
+
+function deleteCard(id){
+    dataCards.cards.forEach(card=>{
+        if(card.id === id){
+            let index = dataCards.cards.indexOf(card);
+            console.log(index)
+            dataCards.cards.splice(index, 1);
+            console.log(dataCards.cards);
+            save();
+        }
+    })
 }
 
 function removeClasses(cardBeignDragged, color){

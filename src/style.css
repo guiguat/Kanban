@@ -116,3 +116,22 @@ input{
     cursor: pointer;
     color:#FF7A00;
 }
+.delete{
+    color: #E2163B;
+    cursor: pointer;
+}
+.invisibleBtn:focus{
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.invisibleBtn{
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
