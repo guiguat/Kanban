@@ -107,7 +107,7 @@ body::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb:horizontal {
 .kanbanCard, .dropzone{
     transition: 400ms;
 }
-.is-dragging{
+.is-dragging, .darkmode .is-dragging{
     cursor: move!important;
     cursor: -webkit-grabbing;
     opacity: .3;
@@ -129,12 +129,10 @@ input{
 }
 
 .priority{
-    font-size: 13px;
     cursor: pointer;
     color:#989898;
 }
-.is-priority{
-    font-size: 13px;
+.is-priority, .darkmode .is-priority{
     cursor: pointer;
     color:#FF7A00;
 }
