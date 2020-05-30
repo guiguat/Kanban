@@ -48,6 +48,10 @@ $(document).ready(()=>{
             initializeCards();
         }
     });
+    $("#deleteAll").click(()=>{
+        dataCards.cards = [];
+        save();
+    });
 });
 
 //functions
@@ -134,6 +138,7 @@ function deleteCard(id){
         }
     })
 }
+
 
 function removeClasses(cardBeignDragged, color){
     cardBeignDragged.classList.remove('red');
