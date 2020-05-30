@@ -3,8 +3,8 @@ let cardBeignDragged;
 let dropzones = document.querySelectorAll('.dropzone');
 // let cards = document.querySelectorAll('.kanbanCard');
 let dataColors = [
-    {color:"green", title:"backlog"},
-    {color:"yellow", title:"to do"},
+    {color:"yellow", title:"backlog"},
+    {color:"green", title:"to do"},
     {color:"blue", title:"in progress"},
     {color:"purple", title:"testing"},
     {color:"red", title:"done"}
