@@ -37,7 +37,7 @@ body::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb:horizontal {
     flex: 1;
     height: 100%;
     width: 100%;
-    border-top: 1px solid #1C1C2E;
+    border-top: 1px solid rgb(212, 212, 212);
 }
 
 .board {
@@ -177,11 +177,13 @@ input{
     box-shadow: none;
     border: none;
     background-color: #252632;
+    color: white;
 }
 .darkmode .form-control:focus{
     box-shadow: none;
     border: none;
     background-color: #252632;
+    color: white;
 }
 .darkmode .form-inline{
     background-color: #1B1C28;
@@ -211,5 +213,8 @@ input{
     color: #dc3545;
 }
 .darkmode #theme-btn{
+    color: white!important;
+}
+.darkmode h3{
     color: white!important;
 }
