@@ -1,7 +1,14 @@
 //variables
 let cardBeignDragged;
-let cards = document.querySelectorAll('.kanbanCard');
 let dropzones = document.querySelectorAll('.dropzone');
+// let cards = document.querySelectorAll('.kanbanCard');
+let dataColors = [
+    {color:"green", title:"backlog"},
+    {color:"yellow", title:"to do"},
+    {color:"blue", title:"in progress"},
+    {color:"purple", title:"testing"},
+    {color:"red", title:"done"}
+];
 let dataCards = {
     config:{
         maxid:0
@@ -10,14 +17,10 @@ let dataCards = {
 };
 
 //initialize
-dropzones.forEach(dropzone=>{
-    dropzone.addEventListener('dragenter', dragenter);
-    dropzone.addEventListener('dragover', dragover);
-    dropzone.addEventListener('dragleave', dragleave);
-    dropzone.addEventListener('drop', drop);
-});
+
 $(document).ready(()=>{
-    
+
+    initializeBoards();
     if(JSON.parse(localStorage.getItem('@kanban:data'))){
         dataCards = JSON.parse(localStorage.getItem('@kanban:data'));
         initializeComponents(dataCards);
@@ -34,7 +37,7 @@ $(document).ready(()=>{
                 id,
                 title,
                 description,
-                position:"yellow"
+                position:"green"
             }
             dataCards.cards.push(newCard);
             dataCards.config.maxid = id;
@@ -46,6 +49,27 @@ $(document).ready(()=>{
 });
 
 //functions
+function initializeBoards(){    
+    dataColors.forEach(item=>{
+        let htmlString = `
+        <div class="board">
+            <h3 class="text-center">${item.title.toUpperCase()}</h3>
+            <div class="dropzone" id="${item.color}">
+                
+            </div>
+        </div>
+        `
+        $("#boardsContainer").append(htmlString)
+    });
+    let dropzones = document.querySelectorAll('.dropzone');
+    dropzones.forEach(dropzone=>{
+        dropzone.addEventListener('dragenter', dragenter);
+        dropzone.addEventListener('dragover', dragover);
+        dropzone.addEventListener('dragleave', dragleave);
+        dropzone.addEventListener('drop', drop);
+    });
+}
+
 function initializeCards(){
     cards = document.querySelectorAll('.kanbanCard');
     
@@ -67,7 +91,10 @@ function initializeComponents(dataArray){
                 </div>
             </div>
         `
-        if(card.position === "yellow")
+        if(card.position === "green")
+            $('#green').append(htmlString);
+
+        else if(card.position === "yellow")
             $('#yellow').append(htmlString);
 
         else if(card.position === "blue")
@@ -91,8 +118,18 @@ function appendComponents(card){
             </div>
         </div>
     `
-    $('#yellow').append(htmlString);
+    $('#green').append(htmlString);
 
+}
+
+function removeClasses(cardBeignDragged, color){
+    cardBeignDragged.classList.remove('red');
+    cardBeignDragged.classList.remove('blue');
+    cardBeignDragged.classList.remove('purple');
+    cardBeignDragged.classList.remove('green');
+    cardBeignDragged.classList.remove('yellow');
+    cardBeignDragged.classList.add(color);
+    position(cardBeignDragged, color);
 }
 
 function save(){
@@ -130,34 +167,20 @@ function dragover({target}){
     this.classList.add('over');
     cardBeignDragged = document.querySelector('.is-dragging');
     if(this.id ==="yellow"){
-        cardBeignDragged.classList.remove('red');
-        cardBeignDragged.classList.remove('blue');
-        cardBeignDragged.classList.remove('purple');
-        cardBeignDragged.classList.add('yellow');
-        position(cardBeignDragged, "yellow");
+        removeClasses(cardBeignDragged, "yellow");
         
     }
+    else if(this.id ==="green"){
+        removeClasses(cardBeignDragged, "green");
+    }
     else if(this.id ==="blue"){
-        cardBeignDragged.classList.remove('yellow');
-        cardBeignDragged.classList.remove('red');
-        cardBeignDragged.classList.remove('purple');
-        cardBeignDragged.classList.add('blue');
-        position(cardBeignDragged, "blue");
-
+        removeClasses(cardBeignDragged, "blue");
     }
     else if(this.id ==="purple"){
-        cardBeignDragged.classList.remove('yellow');
-        cardBeignDragged.classList.remove('blue');
-        cardBeignDragged.classList.remove('red');
-        cardBeignDragged.classList.add('purple');
-        position(cardBeignDragged, "purple");
+        removeClasses(cardBeignDragged, "purple");
     }
     else if(this.id ==="red"){
-        cardBeignDragged.classList.remove('yellow');
-        cardBeignDragged.classList.remove('blue');
-        cardBeignDragged.classList.remove('purple');
-        cardBeignDragged.classList.add('red');
-        position(cardBeignDragged, "red");
+        removeClasses(cardBeignDragged, "red");
     }
     
     this.appendChild(cardBeignDragged);
