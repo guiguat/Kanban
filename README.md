@@ -5,8 +5,7 @@ This project is a Kanban made with Eletron, HTML, CSS and JS/Jquery
 You can try the app with the [web version](https://guatkanban.netlify.app/)
 
 *Disclaimer: it's not fully responsive because it was meant to be a desktop app*
-### Download Executable
-You can download the executable file here: 
+
 ### Download source code
 In order to run this project locally you will need to have [npm](https://nodejs.org/) installed in your computer
 
