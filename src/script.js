@@ -20,6 +20,7 @@ let theme="light";
 //initialize
 
 $(document).ready(()=>{
+    $("#loadingScreen").addClass("d-none");
     theme = localStorage.getItem('@kanban:theme');
     if(theme){
         $("body").addClass(`${theme==="light"?"":"darkmode"}`);

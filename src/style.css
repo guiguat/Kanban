@@ -216,3 +216,31 @@ input{
 .darkmode h3{
     color: white!important;
 }
+
+/* loading */
+.loader {
+    border: 16px solid white; /* Light grey */
+    border-top: 16px solid #1d1f20; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    background-color: transparent;
+     /* Light grey */
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+    0% { transform: rotate(0deg); }
+}
+#loadingScreen{
+    position: absolute;
+    z-index: 30;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
