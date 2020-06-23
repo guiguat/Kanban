@@ -3,7 +3,7 @@
 </p>
 
 # Kanban
-This project is a Kanban made with Eletron, HTML, CSS and JS/Jquery
+This project is a kanban board made with Eletron, HTML, CSS and JS/Jquery
 ## Installation
 ### Try on the web
 You can try the app with the [web version](https://guatkanban.netlify.app/)
