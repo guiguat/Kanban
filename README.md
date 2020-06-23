@@ -1,6 +1,7 @@
 <p align="center">
   <img src="./assets/icon.png" height="250"/>
 </p>
+
 # Kanban
 This project is a Kanban made with Eletron, HTML, CSS and JS/Jquery
 ## Installation
